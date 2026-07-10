@@ -70,7 +70,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-gold-400 hover:text-gold-300 text-sm transition-colors"
           >
             <Phone size={14} />
-            <span className="font-body">+91 98765 43210</span>
+            <span className="font-body">+91 7096557674</span>
           </a>
           <a
             href="#consultation"

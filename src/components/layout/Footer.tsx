@@ -77,7 +77,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="tel:+919876543210" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 98765 43210</a>
+                  <a href="tel:+919876543210" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 7096557674</a>
                   <a href="tel:+919876543211" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 98765 43211</a>
                 </div>
               </li>
@@ -89,7 +89,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-[#25D366] text-sm transition-colors"
                 >
-                  +91 98765 43210 (WhatsApp)
+                  +91 7096557674 (WhatsApp)
                 </a>
               </li>
               <li className="flex items-start gap-3">

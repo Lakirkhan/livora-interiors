@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
                   <p style="color: #ccc; margin: 4px 0;">Budget: ${budget}</p>
                   <p style="color: #ccc; margin: 4px 0;">Location: ${location}</p>
                 </div>
-                <p style="color: #999; font-size: 14px;">WhatsApp: <strong style="color: #d4a017;">+91 98765 43210</strong></p>
+                <p style="color: #999; font-size: 14px;">WhatsApp: <strong style="color: #d4a017;">+91 7096557674</strong></p>
                 <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #333; text-align: center;">
                   <p style="color: #666; font-size: 12px;">FS Interior | Ahmedabad, Gujarat</p>
                 </div>

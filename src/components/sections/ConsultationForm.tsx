@@ -244,7 +244,7 @@ export default function ConsultationForm() {
         >
           <span className="text-white/30 text-sm">Or reach us directly:</span>
           <a href="tel:+919876543210" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
-            +91 98765 43210
+            +91 7096557674
           </a>
           <span className="text-white/15">·</span>
           <a

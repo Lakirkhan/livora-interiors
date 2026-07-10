@@ -29,7 +29,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/917096557674"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#25D366] hover:border-[#25D366]/40 transition-all duration-300"
@@ -37,7 +37,7 @@ export default function Footer() {
                 <MessageCircle size={18} />
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+917096557674"
                 className="w-10 h-10 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold-400 hover:border-gold-500/40 transition-all duration-300"
               >
                 <Phone size={18} />
@@ -77,14 +77,13 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="tel:+919876543210" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 7096557674</a>
-                  <a href="tel:+919876543211" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 98765 43211</a>
+                  <a href="tel:+917096557674" className="text-white/70 hover:text-gold-400 text-sm transition-colors block">+91 7096557674</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MessageCircle size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/917096557674"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-[#25D366] text-sm transition-colors"
@@ -101,7 +100,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
                 <span className="text-white/70 text-sm">
-                  Prahlad Nagar, Ahmedabad,<br />Gujarat – 380015
+                  Safar E Aman, opp. N. K. School, Mohammedi Park, Juhapura, Ahmedabad,<br />Gujarat – 380051
                 </span>
               </li>
             </ul>

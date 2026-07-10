@@ -46,7 +46,7 @@ const fallbackReviews = [
     rating: 5,
     review_text: "The design team brought creativity and practicality together beautifully. Our living room has become the highlight of every guest visit. Professional, punctual, and passionate about their work.",
     client_image: null,
-    location: "Prahlad Nagar, Ahmedabad",
+    location: "Safar E Aman, opp. N. K. School, Mohammedi Park, Juhapura, Ahmedabad",
   },
   {
     id: "4",

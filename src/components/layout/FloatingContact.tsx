@@ -3,8 +3,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Phone, Calendar, X, ChevronUp } from "lucide-react";
 
-const WHATSAPP = "919876543210";
-const PHONE = "+919876543210";
+const WHATSAPP = "917096557674";
+const PHONE = "+917096557674";
 
 export default function FloatingContact() {
   const [open, setOpen] = useState(false);

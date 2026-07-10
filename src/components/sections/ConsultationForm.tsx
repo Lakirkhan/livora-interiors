@@ -243,12 +243,12 @@ export default function ConsultationForm() {
           className="mt-10 flex flex-wrap justify-center gap-6 text-center"
         >
           <span className="text-white/30 text-sm">Or reach us directly:</span>
-          <a href="tel:+919876543210" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
+          <a href="tel:+917096557674" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
             +91 7096557674
           </a>
           <span className="text-white/15">·</span>
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/917096557674"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#25D366] hover:text-[#20ba5a] text-sm transition-colors"

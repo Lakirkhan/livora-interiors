@@ -91,7 +91,7 @@ export default function HeroSection() {
             Book Free Consultation
           </a>
           <a
-            href="https://wa.me/919876543210?text=Hello! I'm interested in interior design."
+            href="https://wa.me/917096557674?text=Hello! I'm interested in interior design."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-7 py-4 border border-[#25D366] text-[#25D366] font-semibold text-sm tracking-wider uppercase hover:bg-[#25D366] hover:text-black transition-all duration-300"

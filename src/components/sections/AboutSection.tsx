@@ -74,12 +74,12 @@ export default function AboutSection() {
               >
                 <div className="flex gap-6">
                   <div className="text-center">
-                    <div className="font-display text-3xl text-gold-400 font-semibold">50+</div>
+                    <div className="font-display text-3xl text-gold-400 font-semibold">10+</div>
                     <div className="text-white/50 text-[11px] tracking-wider mt-1">Happy Clients</div>
                   </div>
                   <div className="w-px bg-gold-500/30" />
                   <div className="text-center">
-                    <div className="font-display text-3xl text-gold-400 font-semibold">100+</div>
+                    <div className="font-display text-3xl text-gold-400 font-semibold">50+</div>
                     <div className="text-white/50 text-[11px] tracking-wider mt-1">Rooms Designed</div>
                   </div>
                 </div>

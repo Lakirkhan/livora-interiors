@@ -6,8 +6,8 @@ import SectionHeader from "../ui/SectionHeader";
 import type { Review } from "@/types";
 
 const STATS = [
-  { value: "50+", label: "Happy Clients" },
-  { value: "100+", label: "Rooms Designed" },
+  { value: "10+", label: "Happy Clients" },
+  { value: "50+", label: "Rooms Designed" },
   { value: "5★", label: "Customer Satisfaction" },
   { value: "100%", label: "Transparent Pricing" },
 ];

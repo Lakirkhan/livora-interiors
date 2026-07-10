@@ -3,24 +3,11 @@ import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import SectionHeader from "../ui/SectionHeader";
 
-const INCLUSIONS = [
-  "Safety Door Paneling",
-  "TV Unit",
-  "Modular Kitchen",
-  "Wardrobe",
-  "Dining Area",
-  "False Ceiling",
-  "Paint Work",
-  "Electrical Work",
-  "Custom Furniture",
-  "Dressing Unit",
-];
-
 const PACKAGES = [
   {
     type: "2 BHK",
-    price: "₹8.00 Lakh",
-    area: "800 – 1100 sq ft",
+    basicPrice: "₹6.50 Lakh",
+    platinumPrice: "₹8.00 Lakh",
     popular: false,
     color: "from-white/5 to-white/2",
     borderColor: "border-white/10",
@@ -28,8 +15,8 @@ const PACKAGES = [
   },
   {
     type: "3 BHK",
-    price: "₹11.50 Lakh",
-    area: "1100 – 1600 sq ft",
+    basicPrice: "₹9.50 Lakh",
+    platinumPrice: "₹12.50 Lakh",
     popular: true,
     color: "from-gold-500/10 to-gold-500/3",
     borderColor: "border-gold-500/40",
@@ -37,8 +24,8 @@ const PACKAGES = [
   },
   {
     type: "4 BHK",
-    price: "₹15.50 Lakh",
-    area: "1600 – 2400 sq ft",
+    basicPrice: "₹11.50 Lakh",
+    platinumPrice: "₹13.50 Lakh",
     popular: false,
     color: "from-white/5 to-white/2",
     borderColor: "border-white/10",
@@ -82,9 +69,8 @@ export default function PackagesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.7 }}
-              className={`relative flex flex-col border ${pkg.borderColor} bg-gradient-to-b ${pkg.color} p-8 ${
-                pkg.popular ? "shadow-[0_0_60px_rgba(212,160,23,0.12)] scale-[1.02]" : ""
-              } hover:border-gold-500/50 transition-all duration-500 group`}
+              className={`relative flex flex-col border ${pkg.borderColor} bg-gradient-to-b ${pkg.color} p-8 ${pkg.popular ? "shadow-[0_0_60px_rgba(212,160,23,0.12)] scale-[1.02]" : ""
+                } hover:border-gold-500/50 transition-all duration-500 group`}
             >
               {/* Badge */}
               {pkg.badge && (
@@ -98,37 +84,29 @@ export default function PackagesSection() {
               <div className="mb-8">
                 <div className="text-gold-500 text-xs tracking-[0.35em] uppercase mb-2 font-body">Package</div>
                 <div className="font-display text-4xl font-light text-white">{pkg.type}</div>
-                <div className="text-white/30 text-xs mt-1">{pkg.area}</div>
               </div>
 
               {/* Price */}
-              <div className="mb-8 pb-8 border-b border-white/10">
-                <div className="text-white/50 text-xs mb-1">Starting From</div>
-                <div className="font-display text-5xl font-light gold-text">{pkg.price}</div>
-                <div className="text-white/30 text-xs mt-2">All inclusive · No hidden charges</div>
-              </div>
-
-              {/* Inclusions */}
-              <div className="flex-1 mb-8">
-                <div className="text-white/50 text-xs tracking-wider uppercase mb-4">What's Included</div>
-                <ul className="space-y-3">
-                  {INCLUSIONS.map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <Check size={14} className="text-gold-500 flex-shrink-0" />
-                      <span className="text-white/70 text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="mb-8 pb-8 border-b border-white/10 space-y-4">
+                <div>
+                  <div className="text-white/50 text-xs mb-1">Basic</div>
+                  <div className="text-white/30 text-xs">Starting From</div>
+                  <div className="font-display text-3xl sm:text-4xl font-light gold-text">{pkg.basicPrice}</div>
+                </div>
+                <div>
+                  <div className="text-white/50 text-xs mb-1">Platinum</div>
+                  <div className="text-white/30 text-xs">Starting From</div>
+                  <div className="font-display text-3xl sm:text-4xl font-light gold-text">{pkg.platinumPrice}</div>
+                </div>
               </div>
 
               {/* CTA */}
               <a
                 href="#consultation"
-                className={`block text-center py-4 text-sm font-semibold tracking-wider uppercase transition-all duration-300 ${
-                  pkg.popular
-                    ? "bg-gold-500 text-black hover:bg-gold-400 hover:shadow-[0_0_20px_rgba(212,160,23,0.4)]"
-                    : "border border-gold-500/50 text-gold-400 hover:bg-gold-500 hover:text-black"
-                }`}
+                className={`block text-center py-4 text-sm font-semibold tracking-wider uppercase transition-all duration-300 ${pkg.popular
+                  ? "bg-gold-500 text-black hover:bg-gold-400 hover:shadow-[0_0_20px_rgba(212,160,23,0.4)]"
+                  : "border border-gold-500/50 text-gold-400 hover:bg-gold-500 hover:text-black"
+                  }`}
               >
                 Get {pkg.type} Quote
               </a>

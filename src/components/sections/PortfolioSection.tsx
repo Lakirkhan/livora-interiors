@@ -108,7 +108,7 @@ export default function PortfolioSection() {
           className="mt-12 text-center"
         >
           <a
-            href="https://instagram.com/fsinterior.in"
+            href="https://instagram.com/_fs_interior"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white/60 text-sm tracking-wider uppercase hover:border-gold-500 hover:text-gold-400 transition-all duration-300"

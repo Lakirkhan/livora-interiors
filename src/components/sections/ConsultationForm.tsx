@@ -43,6 +43,13 @@ export default function ConsultationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+
+      if (!res.ok) {
+        const errorBody = await res.json().catch(() => null);
+        const errorMessage = errorBody?.message || `Request failed with status ${res.status}`;
+        throw new Error(errorMessage);
+      }
+
       const result = await res.json();
 
       if (result.success) {
@@ -52,8 +59,14 @@ export default function ConsultationForm() {
       } else {
         toast.error(result.message || "Something went wrong. Please try again.");
       }
-    } catch {
-      toast.error("Network error. Please try again or WhatsApp us directly.");
+    } catch (error) {
+      console.error("Consultation submit error:", error);
+      const message = error instanceof Error ? error.message : String(error);
+      if (message.toLowerCase().includes("network")) {
+        toast.error("Network error. Please try again or WhatsApp us directly.");
+      } else {
+        toast.error(message || "Something went wrong. Please try again.");
+      }
     }
   };
 
@@ -256,8 +269,8 @@ export default function ConsultationForm() {
             WhatsApp Us
           </a>
           <span className="text-white/15">·</span>
-          <a href="mailto:hello@fsinterior.in" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
-            hello@fsinterior.in
+          <a href="mailto:hafsahsaiyed@gmail.com" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
+            hafsahsaiyed@gmail.com
           </a>
         </motion.div>
       </div>

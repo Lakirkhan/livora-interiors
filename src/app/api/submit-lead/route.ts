@@ -18,8 +18,11 @@ export async function POST(req: NextRequest) {
       console.error("Supabase error:", dbErr);
     }
 
-    // Send emails via Resend (only if API key is configured)
-    if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== "your_resend_api_key") {
+    const emailEnabled = !!process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== "your_resend_api_key";
+    let emailMessage = "";
+
+    // Send emails via Resend if API key is configured
+    if (emailEnabled) {
       try {
         const { Resend } = await import("resend");
         const resend = new Resend(process.env.RESEND_API_KEY);
@@ -76,10 +79,17 @@ export async function POST(req: NextRequest) {
         }
       } catch (emailErr) {
         console.error("Email error:", emailErr);
+        emailMessage = " Email notification failed to send.";
       }
+    } else {
+      console.warn("Resend email not configured. Skipping email notifications.");
+      emailMessage = " Email notifications are not configured.";
     }
 
-    return NextResponse.json({ success: true, message: "Consultation request submitted successfully." });
+    return NextResponse.json({
+      success: true,
+      message: `Consultation request submitted successfully.${emailMessage}`,
+    });
   } catch (error) {
     console.error("Submit lead error:", error);
     return NextResponse.json({ success: false, message: "Something went wrong. Please try again." }, { status: 500 });

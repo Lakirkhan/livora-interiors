@@ -1,25 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
 
-export async function GET() {
-  try {
-    const supabase = createServiceClient();
-    const { data, error } = await supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(12);
-
-    if (error) throw error;
-
-    return NextResponse.json({ reviews: data || [] });
-  } catch (error) {
-    console.error("Reviews fetch error:", error);
-    // Return fallback reviews if DB not configured
-    return NextResponse.json({ reviews: fallbackReviews });
-  }
-}
-
 const fallbackReviews = [
   {
     id: "1",
@@ -76,3 +57,21 @@ const fallbackReviews = [
     location: "Thaltej, Ahmedabad",
   },
 ];
+
+export async function GET() {
+  try {
+    const supabase = createServiceClient();
+    const { data, error } = await supabase
+      .from("reviews")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(12);
+
+    if (error) throw error;
+
+    return NextResponse.json({ reviews: data || [] });
+  } catch (error) {
+    console.error("Reviews fetch error:", error);
+    return NextResponse.json({ reviews: fallbackReviews });
+  }
+}

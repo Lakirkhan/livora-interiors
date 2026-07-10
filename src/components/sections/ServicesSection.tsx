@@ -1,56 +1,38 @@
 "use client";
 import { motion } from "framer-motion";
-import { Home, ChefHat, Sofa, BedDouble, Layout, Layers, Box, Wrench } from "lucide-react";
+import { Home, Sofa, Layout, Layers, Wrench } from "lucide-react";
 import SectionHeader from "../ui/SectionHeader";
 
 const SERVICES = [
   {
     icon: Home,
     title: "Residential Interior Design",
-    desc: "Complete home transformation tailored to your lifestyle and personality.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
-  },
-  {
-    icon: ChefHat,
-    title: "Modular Kitchen Design",
-    desc: "Functional, sleek kitchens with smart storage and premium finishes.",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
-  },
-  {
-    icon: Sofa,
-    title: "Living Room Design",
-    desc: "Spaces that balance elegance and everyday comfort for the whole family.",
-    image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80",
-  },
-  {
-    icon: BedDouble,
-    title: "Bedroom Design",
-    desc: "Serene personal sanctuaries designed for rest, comfort and style.",
-    image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600&q=80",
+    desc: "Beautiful, functional interiors designed around your lifestyle, comfort, and everyday ease.",
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80",
   },
   {
     icon: Layout,
-    title: "Wardrobe Design",
-    desc: "Custom wardrobe solutions that maximise storage while looking stunning.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    title: "Institutional Interior Design",
+    desc: "Thoughtfully planned spaces for offices, schools, and healthcare facilities that support productivity and comfort.",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80",
   },
   {
-    icon: Layers,
-    title: "False Ceiling Design",
-    desc: "Architectural ceiling designs that add drama and depth to every room.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
-  },
-  {
-    icon: Box,
-    title: "3D Visualization",
-    desc: "Photo-realistic 3D renders so you see your space before execution begins.",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80",
+    icon: Sofa,
+    title: "Commercial Interior Design",
+    desc: "Modern, brand-focused interiors that create a lasting impression and improve customer experience.",
+    image: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=600&q=80",
   },
   {
     icon: Wrench,
-    title: "Complete Turnkey Solutions",
-    desc: "End-to-end project management from planning through to final handover.",
-    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80",
+    title: "Construction",
+    desc: "Reliable construction solutions from planning to execution, built with quality craftsmanship and care.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+  },
+  {
+    icon: Layers,
+    title: "Renovation",
+    desc: "Smart renovation services that refresh, upgrade, and modernize existing spaces with minimal disruption.",
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=80",
   },
 ];
 
@@ -65,11 +47,11 @@ export default function ServicesSection() {
             eyebrow="What We Offer"
             title="Our"
             titleAccent="Services"
-            subtitle="From initial concept to full execution — every service delivered with precision and passion."
+            subtitle="From a fresh new space to a thoughtful renovation, we deliver design and construction solutions that feel practical, elegant, and easy to live with."
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.title}
@@ -97,7 +79,7 @@ export default function ServicesSection() {
                 <h3 className="text-white font-display text-lg font-medium mb-2 group-hover:text-gold-300 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-white/45 text-sm leading-relaxed">{service.desc}</p>
+                <p className="text-white/70 text-sm sm:text-[0.95rem] leading-7">{service.desc}</p>
 
                 {/* Hover arrow */}
                 <div className="mt-4 flex items-center gap-2 text-gold-500 text-xs tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -120,14 +102,14 @@ export default function ServicesSection() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mt-14 text-center"
         >
-          <p className="text-white/50 mb-6 text-sm">
-            Not sure which service suits your needs?
+          <p className="text-white/70 mb-6 text-sm sm:text-base">
+            Not sure which service is the right fit for your space?
           </p>
           <a
             href="#consultation"
             className="inline-flex items-center gap-3 px-8 py-4 border border-gold-500 text-gold-400 text-sm tracking-wider uppercase hover:bg-gold-500 hover:text-black transition-all duration-300 font-semibold"
           >
-            Get a Free Consultation
+            Book a Free Consultation
             <div className="w-6 h-px bg-current" />
           </a>
         </motion.div>

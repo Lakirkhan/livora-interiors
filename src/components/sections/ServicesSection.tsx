@@ -8,33 +8,33 @@ const SERVICES = [
     icon: Home,
     title: "Residential Interior Design",
     desc: "Beautiful, functional interiors designed around your lifestyle, comfort, and everyday ease.",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80",
+    image: "/images/Living Room/1783865300485.jpg",
   },
   {
     icon: Layout,
     title: "Institutional Interior Design",
     desc: "Thoughtfully planned spaces for offices, schools, and healthcare facilities that support productivity and comfort.",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80",
+    image: "/images/Office/1783865299630.jpg",
   },
   {
     icon: Sofa,
     title: "Commercial Interior Design",
     desc: "Modern, brand-focused interiors that create a lasting impression and improve customer experience.",
-    image: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=600&q=80",
+    image: "/images/Dining Space/1783865300427.jpg",
   },
   {
     icon: Wrench,
     title: "Construction",
     desc: "Reliable construction solutions from planning to execution, built with quality craftsmanship and care.",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+    image: "/images/Main Gate/1783865299708.png",
   },
   {
     icon: Layers,
     title: "Renovation",
     desc: "Smart renovation services that refresh, upgrade, and modernize existing spaces with minimal disruption.",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=80",
+    image: "/images/Baathroom/1783865300446.jpg",
   },
-];
+].map((s) => ({ ...s, image: encodeURI(s.image) }));
 
 export default function ServicesSection() {
   return (
@@ -51,7 +51,7 @@ export default function ServicesSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.title}

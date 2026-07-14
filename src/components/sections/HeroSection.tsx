@@ -16,7 +16,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=85"
+          src={encodeURI("/images/Living Room/1783865300504.jpg")}
           alt="Premium interior design"
           fill
           priority

@@ -41,7 +41,7 @@ export default function AboutSection() {
               {/* Main image */}
               <div className="absolute inset-0 left-0 top-0 w-3/4 h-4/5">
                 <Image
-                  src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80"
+                  src={encodeURI("/images/Office/1783865299363.jpg")}
                   alt="Our design studio"
                   fill
                   className="object-cover"
@@ -53,7 +53,7 @@ export default function AboutSection() {
               {/* Accent image */}
               <div className="absolute right-0 bottom-0 w-3/5 h-3/5 border-4 border-[#0d0d0d]">
                 <Image
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80"
+                  src={encodeURI("/images/BedRoom/1783865299412.jpg")}
                   alt="Premium interior execution"
                   fill
                   className="object-cover"

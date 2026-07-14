@@ -32,7 +32,7 @@ export const metadata: Metadata = {
       "Complete interior design and execution by expert professionals. Free site visit. Transparent pricing. Ahmedabad's most trusted boutique interior studio.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80",
+        url: "/images/Living%20Room/1783865300504.jpg",
         width: 1200,
         height: 630,
         alt: "FS Interior – Premium Interior Design Ahmedabad",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FS Interior | Interior Designer in Ahmedabad",
     description: "Premium interior design studio in Ahmedabad. Book your free consultation today.",
-    images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80"],
+    images: ["/images/Living%20Room/1783865300504.jpg"],
   },
   robots: {
     index: true,

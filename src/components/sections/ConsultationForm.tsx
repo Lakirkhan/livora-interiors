@@ -55,7 +55,11 @@ export default function ConsultationForm() {
       if (result.success) {
         setSubmitted(true);
         reset();
-        toast.success("Consultation request submitted! We'll reach out within 24 hours.");
+        if (result.message?.includes("failed") || result.message?.includes("not configured")) {
+          toast.error(result.message);
+        } else {
+          toast.success("Consultation request submitted! We'll reach out within 24 hours.");
+        }
       } else {
         toast.error(result.message || "Something went wrong. Please try again.");
       }
@@ -269,8 +273,8 @@ export default function ConsultationForm() {
             WhatsApp Us
           </a>
           <span className="text-white/15">·</span>
-          <a href="mailto:hafsahsaiyed@gmail.com" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
-            hafsahsaiyed@gmail.com
+          <a href="mailto:fbssaiyed@gmail.com" className="text-gold-400 hover:text-gold-300 text-sm transition-colors">
+            fbssaiyed@gmail.com
           </a>
         </motion.div>
       </div>

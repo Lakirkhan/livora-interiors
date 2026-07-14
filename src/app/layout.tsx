@@ -60,7 +60,7 @@ const jsonLd = {
   description: "Premium boutique interior design studio in Ahmedabad offering residential and commercial interior solutions.",
   url: "https://fsinterior.in",
   telephone: "+91-98765-43210",
-  email: "hafsahsaiyed@gmail.com",
+  email: "fbssaiyed@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Ahmedabad",

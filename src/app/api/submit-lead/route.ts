@@ -26,10 +26,11 @@ export async function POST(req: NextRequest) {
       try {
         const { Resend } = await import("resend");
         const resend = new Resend(process.env.RESEND_API_KEY);
+        const fromAddress = process.env.RESEND_FROM_EMAIL || "FS Interior <onboarding@resend.dev>";
 
         // Owner notification
         await resend.emails.send({
-          from: "FS Interior <noreply@fsinterior.in>",
+          from: fromAddress,
           to: [process.env.OWNER_EMAIL || "owner@fsinterior.in"],
           subject: `🏠 New Lead: ${full_name} – ${bhk_type}`,
           html: `
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
         // Customer confirmation
         if (email) {
           await resend.emails.send({
-            from: "FS Interior <noreply@fsinterior.in>",
+            from: fromAddress,
             to: [email],
             subject: "Your Consultation Request is Confirmed – FS Interior",
             html: `
@@ -79,7 +80,8 @@ export async function POST(req: NextRequest) {
         }
       } catch (emailErr) {
         console.error("Email error:", emailErr);
-        emailMessage = " Email notification failed to send.";
+        const errMsg = emailErr instanceof Error ? emailErr.message : String(emailErr);
+        emailMessage = ` Email notification failed to send: ${errMsg}`;
       }
     } else {
       console.warn("Resend email not configured. Skipping email notifications.");

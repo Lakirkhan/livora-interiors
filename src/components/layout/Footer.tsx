@@ -21,7 +21,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com/fsinterior.in"
+                href="https://instagram.com/_fs_interior"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold-400 hover:border-gold-500/40 transition-all duration-300"
@@ -93,8 +93,8 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
-                <a href="mailto:hafsahsaiyed@gmail.com" className="text-white/70 hover:text-gold-400 text-sm transition-colors">
-                  hafsahsaiyed@gmail.com
+                <a href="mailto:fbssaiyed@gmail.com" className="text-white/70 hover:text-gold-400 text-sm transition-colors">
+                  fbssaiyed@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

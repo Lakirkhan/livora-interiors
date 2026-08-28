@@ -20,6 +20,7 @@ export interface Review {
   client_image?: string;
   location?: string;
   created_at?: string;
+  source?: "google" | "manual";
 }
 
 export interface PortfolioItem {

@@ -3,8 +3,10 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import FloatingContact from "@/components/layout/FloatingContact";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fsinterior.in"),
   title: "FS Interior | Premium Interior Designer in Ahmedabad",
   description:
     "Transform your space with FS Interior – Ahmedabad's trusted interior design studio offering residential design, modular kitchens, 3D visualization, and complete turnkey solutions. 2 BHK, 3 BHK & 4 BHK packages available.",
@@ -107,15 +109,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         {children}
+        <Footer />
         <FloatingContact />
         <Toaster
           position="top-right"
           toastOptions={{
             style: {
-              background: "#1a1a1a",
-              color: "#f5f5f0",
-              border: "1px solid #d4a017",
-              borderRadius: "8px",
+              background: "#242019",
+              color: "#faf6ef",
+              border: "1px solid #af8a52",
+              borderRadius: "2px",
             },
           }}
         />

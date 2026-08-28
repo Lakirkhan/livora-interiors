@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import SectionHeader from "../ui/SectionHeader";
+import { Star, ChevronLeft, ChevronRight, Quote, BadgeCheck, Plus, X } from "lucide-react";
+import toast from "react-hot-toast";
 import type { Review } from "@/types";
 
 const STATS = [
@@ -12,17 +12,113 @@ const STATS = [
   { value: "100%", label: "Transparent Pricing" },
 ];
 
+const inputClass =
+  "w-full bg-transparent border-b border-charcoal/20 text-charcoal placeholder-charcoal/30 px-0 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors duration-300 font-body";
+const labelClass = "text-charcoal/45 text-xs tracking-wider uppercase mb-2 block font-body";
+
+function AddReviewForm({ onDone }: { onDone: () => void }) {
+  const [name, setName] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [location, setLocation] = useState("");
+  const [rating, setRating] = useState(5);
+  const [text, setText] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !projectType.trim() || !text.trim()) {
+      toast.error("Please fill in your name, project type, and review.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ client_name: name, project_type: projectType, rating, review_text: text, location }),
+      });
+      const result = await res.json();
+      if (result.success) {
+        toast.success("Thank you for your review!");
+        onDone();
+      } else {
+        toast.error(result.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      toast.error("Network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+        <div>
+          <label className={labelClass}>Your Name *</label>
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} />
+        </div>
+        <div>
+          <label className={labelClass}>Project Type *</label>
+          <input
+            value={projectType}
+            onChange={(e) => setProjectType(e.target.value)}
+            placeholder="e.g. 3 BHK Complete Interior"
+            className={inputClass}
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label className={labelClass}>Location</label>
+          <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Satellite, Ahmedabad" className={inputClass} />
+        </div>
+        <div className="sm:col-span-2">
+          <label className={labelClass}>Rating *</label>
+          <div className="flex gap-1.5">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button key={n} type="button" onClick={() => setRating(n)} aria-label={`${n} star`}>
+                <Star size={22} className={n <= rating ? "text-gold-500 fill-gold-500" : "text-charcoal/20"} />
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="sm:col-span-2">
+          <label className={labelClass}>Your Review *</label>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={4}
+            placeholder="Tell us about your experience..."
+            className={`${inputClass} resize-none`}
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        disabled={submitting}
+        className="self-start px-8 py-4 bg-charcoal text-ivory text-xs font-medium tracking-[0.2em] uppercase hover:bg-charcoal/85 transition-colors duration-300 disabled:opacity-50"
+      >
+        {submitting ? "Submitting..." : "Submit Review"}
+      </button>
+    </form>
+  );
+}
+
 export default function TestimonialsSection() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+
+  const loadReviews = useCallback(() => {
+    return fetch("/api/reviews")
+      .then((r) => r.json())
+      .then((d) => setReviews(d.reviews || []))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
-    fetch("/api/reviews")
-      .then((r) => r.json())
-      .then((d) => { setReviews(d.reviews || []); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
+    loadReviews().finally(() => setLoading(false));
+  }, [loadReviews]);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % reviews.length), [reviews.length]);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + reviews.length) % reviews.length), [reviews.length]);
@@ -34,37 +130,36 @@ export default function TestimonialsSection() {
   }, [next, reviews.length]);
 
   return (
-    <section id="reviews" className="py-24 lg:py-32 bg-[#090909] relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
-
-      {/* Background gold gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(212,160,23,0.04)_0%,_transparent_60%)]" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="reviews" className="py-20 lg:py-32 bg-ivory relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20 pb-16 border-b border-charcoal/10">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="text-center p-6 border border-gold-500/15 bg-white/[0.02]"
+              className="text-center lg:text-left"
             >
-              <div className="font-display text-4xl lg:text-5xl gold-text font-light mb-2">{stat.value}</div>
-              <div className="text-white/40 text-xs tracking-wider uppercase">{stat.label}</div>
+              <div className="font-display text-4xl lg:text-5xl text-charcoal font-light mb-1">{stat.value}</div>
+              <div className="text-taupe text-xs tracking-wider uppercase font-body">{stat.label}</div>
             </motion.div>
           ))}
         </div>
 
-        <div className="mb-16">
-          <SectionHeader
-            eyebrow="Client Reviews"
-            title="What Our"
-            titleAccent="Clients Say"
-            subtitle="Real words from real homeowners who trusted us with their most personal spaces."
-          />
+        <div className="mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
+          <p className="text-charcoal/60 max-w-lg font-body">
+            Real words from real homeowners who trusted us with their most personal spaces.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="group flex-shrink-0 flex items-center gap-2 self-start sm:self-auto px-6 py-3.5 border border-charcoal text-charcoal text-xs font-medium tracking-[0.15em] uppercase hover:bg-charcoal hover:text-ivory transition-colors duration-300"
+          >
+            <Plus size={15} />
+            Add Your Review
+          </button>
         </div>
 
         {/* Carousel */}
@@ -73,88 +168,122 @@ export default function TestimonialsSection() {
             <div className="w-8 h-8 border border-gold-500 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : reviews.length > 0 ? (
-          <div className="relative max-w-4xl mx-auto">
+          <div className="relative max-w-3xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -60 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-[#111] border border-white/5 p-8 sm:p-12 relative"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="relative"
               >
-                {/* Quote icon */}
-                <Quote size={40} className="text-gold-500/20 absolute top-8 right-8" />
+                <Quote size={36} className="text-gold-400/40 mb-6" />
 
-                {/* Stars */}
                 <div className="flex gap-1 mb-6">
                   {Array.from({ length: reviews[current].rating }).map((_, i) => (
-                    <Star key={i} size={16} className="text-gold-500 fill-gold-500" />
+                    <Star key={i} size={14} className="text-gold-500 fill-gold-500" />
                   ))}
                 </div>
 
-                {/* Review text */}
-                <p className="text-white/80 text-lg leading-relaxed font-display font-light italic mb-8">
-                  "{reviews[current].review_text}"
+                <p className="text-charcoal text-2xl sm:text-3xl leading-snug font-display font-light italic mb-10 text-balance">
+                  &ldquo;{reviews[current].review_text}&rdquo;
                 </p>
 
-                {/* Client info */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center flex-shrink-0">
-                    <span className="text-gold-500 font-display text-lg font-semibold">
+                  <div className="w-11 h-11 rounded-full bg-linen border border-charcoal/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-gold-600 font-display text-base font-medium">
                       {reviews[current].client_name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <div className="text-white font-semibold text-sm">{reviews[current].client_name}</div>
-                    <div className="text-gold-500/70 text-xs mt-0.5">{reviews[current].project_type}</div>
-                    {reviews[current].location && (
-                      <div className="text-white/30 text-xs mt-0.5">{reviews[current].location}</div>
-                    )}
+                    <div className="text-charcoal font-medium text-sm font-body">{reviews[current].client_name}</div>
+                    <div className="text-taupe text-xs mt-0.5 font-body">
+                      {reviews[current].project_type}
+                      {reviews[current].location ? ` · ${reviews[current].location}` : ""}
+                    </div>
                   </div>
-                  <div className="ml-auto flex-shrink-0">
-                    <div className="text-[10px] tracking-wider text-white/20 uppercase">Verified Review</div>
-                    <div className="text-gold-500 text-xs mt-0.5">★ Google Review</div>
-                  </div>
+                  {reviews[current].source === "google" && (
+                    <div className="ml-auto flex-shrink-0 flex items-center gap-1.5 text-taupe text-xs font-body">
+                      <BadgeCheck size={14} className="text-gold-500" />
+                      Google Review
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between mt-8">
+            <div className="flex items-center gap-6 mt-12">
               <button
                 onClick={prev}
-                className="w-11 h-11 border border-white/10 flex items-center justify-center text-white/40 hover:text-gold-400 hover:border-gold-500/50 transition-all duration-300"
+                className="w-10 h-10 border border-charcoal/15 flex items-center justify-center text-charcoal/50 hover:text-gold-600 hover:border-gold-500/50 transition-all duration-300"
                 aria-label="Previous review"
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                onClick={next}
+                className="w-10 h-10 border border-charcoal/15 flex items-center justify-center text-charcoal/50 hover:text-gold-600 hover:border-gold-500/50 transition-all duration-300"
+                aria-label="Next review"
+              >
+                <ChevronRight size={16} />
               </button>
 
-              {/* Dots */}
-              <div className="flex gap-2">
+              <div className="flex gap-2 ml-2">
                 {reviews.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrent(i)}
-                    className={`transition-all duration-300 ${
-                      i === current ? "w-8 h-1.5 bg-gold-500" : "w-1.5 h-1.5 bg-white/20 rounded-full"
+                    className={`h-1.5 transition-all duration-300 ${
+                      i === current ? "w-8 bg-gold-500" : "w-1.5 bg-charcoal/15 rounded-full"
                     }`}
                     aria-label={`Review ${i + 1}`}
                   />
                 ))}
               </div>
-
-              <button
-                onClick={next}
-                className="w-11 h-11 border border-white/10 flex items-center justify-center text-white/40 hover:text-gold-400 hover:border-gold-500/50 transition-all duration-300"
-                aria-label="Next review"
-              >
-                <ChevronRight size={18} />
-              </button>
             </div>
           </div>
         ) : null}
       </div>
+
+      {/* Add Review Modal */}
+      <AnimatePresence>
+        {showForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-warm-black/70 lightbox-overlay flex items-center justify-center p-4"
+            onClick={() => setShowForm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 12 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 12 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-w-lg w-full max-h-[85vh] overflow-y-auto bg-ivory p-8 sm:p-10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowForm(false)}
+                className="absolute top-6 right-6 w-9 h-9 border border-charcoal/15 flex items-center justify-center text-charcoal/50 hover:text-gold-600 hover:border-gold-500/50 transition-colors"
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
+              <h3 className="font-display text-2xl sm:text-3xl font-light text-charcoal mb-2">Share your experience</h3>
+              <p className="text-charcoal/50 text-sm mb-8 font-body">Your review helps other homeowners trust us with their space.</p>
+              <AddReviewForm
+                onDone={() => {
+                  setShowForm(false);
+                  loadReviews();
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

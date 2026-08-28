@@ -8,12 +8,12 @@
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-inter: 'Inter', sans-serif;
   --font-playfair: 'Playfair Display', serif;
-  --gold: #d4a017;
-  --gold-light: #e8c060;
-  --gold-pale: #f5dfa0;
-  --charcoal: #1a1a1a;
-  --warm-black: #0d0d0d;
-  --cream: #faf8f4;
+  --gold: #8e6e3d;
+  --gold-light: #af8a52;
+  --gold-pale: #ddc394;
+  --charcoal: #242019;
+  --warm-black: #15120d;
+  --ivory: #faf6ef;
 }
 
 * {
@@ -27,8 +27,8 @@ html {
 }
 
 body {
-  background-color: var(--warm-black);
-  color: #f5f5f0;
+  background-color: var(--ivory);
+  color: var(--charcoal);
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,24 +42,28 @@ body {
   font-family: var(--font-playfair);
 }
 
-/* Gold gradient text */
+/* Brass gradient text — reserve for single accent words */
 .gold-text {
-  background: linear-gradient(135deg, #d4a017, #f5dfa0, #d4a017);
+  background: linear-gradient(135deg, #af8a52, #ddc394, #8e6e3d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gold border */
 .gold-border {
   border-color: var(--gold);
 }
 
-/* Section divider */
+/* Hairline divider */
 .gold-divider {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ivory);
 }
 
 /* Scrollbar */
@@ -67,43 +71,21 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--warm-black);
+  background: var(--ivory);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--gold);
   border-radius: 3px;
 }
 
-/* Smooth section transitions */
 section {
   overflow: hidden;
 }
 
-/* Portfolio masonry */
-.masonry-grid {
-  columns: 3;
-  column-gap: 1rem;
-}
-@media (max-width: 768px) {
-  .masonry-grid {
-    columns: 1;
-  }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-  .masonry-grid {
-    columns: 2;
-  }
-}
-
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-}
-
 /* Custom select styling */
 select option {
-  background: #1a1a1a;
-  color: #f5f5f0;
+  background: var(--ivory);
+  color: var(--charcoal);
 }
 
 /* Floating buttons */
@@ -111,12 +93,11 @@ select option {
   position: fixed;
   right: 1.5rem;
   z-index: 50;
-  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.3);
+  box-shadow: 0 8px 32px rgba(36, 32, 25, 0.18);
   transition: all 0.3s ease;
 }
 .floating-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(212, 160, 23, 0.5);
 }
 
 /* Lightbox overlay */

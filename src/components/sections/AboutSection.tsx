@@ -1,131 +1,108 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Eye, MessageSquare, Star, Banknote, Layers } from "lucide-react";
-import SectionHeader from "../ui/SectionHeader";
+import { ArrowRight } from "lucide-react";
 
 const VALUES = [
-  { icon: Eye, title: "Personalized Attention", desc: "Every project is treated as a personal commitment, not just a contract." },
-  { icon: MessageSquare, title: "Transparent Communication", desc: "Clear pricing, honest timelines, no hidden surprises." },
-  { icon: Star, title: "Quality Workmanship", desc: "Premium materials and meticulous execution at every step." },
-  { icon: Banknote, title: "Affordable Luxury", desc: "Stunning results without the boutique-agency price tag." },
-  { icon: Layers, title: "End-to-End Management", desc: "From concept to handover — we handle everything." },
+  { num: "01", title: "Personalized Attention", desc: "Every project is a personal commitment, not just a contract." },
+  { num: "02", title: "Transparent Communication", desc: "Clear pricing, honest timelines, no hidden surprises." },
+  { num: "03", title: "Quality Workmanship", desc: "Premium materials and meticulous execution at every step." },
+  { num: "04", title: "Affordable Luxury", desc: "Stunning results without the boutique-agency price tag." },
 ];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
-  }),
-};
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-[#0d0d0d] relative">
-      {/* Subtle top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section id="about" className="py-20 lg:py-32 bg-ivory relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left – Images */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative"
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="relative order-2 lg:order-1"
           >
-            <div className="relative h-[520px] sm:h-[580px]">
-              {/* Main image */}
+            <div className="relative h-[420px] sm:h-[540px]">
               <div className="absolute inset-0 left-0 top-0 w-3/4 h-4/5">
                 <Image
                   src={encodeURI("/images/Office/1783865299363.jpg")}
-                  alt="Our design studio"
+                  alt="FS Interior design studio at work"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
               </div>
 
-              {/* Accent image */}
-              <div className="absolute right-0 bottom-0 w-3/5 h-3/5 border-4 border-[#0d0d0d]">
+              <div className="absolute right-0 bottom-0 w-3/5 h-3/5 border-[6px] border-ivory">
                 <Image
                   src={encodeURI("/images/BedRoom/1783865299412.jpg")}
-                  alt="Premium interior execution"
+                  alt="A completed FS Interior bedroom project"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 80vw, 35vw"
                 />
               </div>
 
-              {/* Gold accent line */}
-              <div className="absolute -left-4 top-12 w-2 h-32 bg-gold-500" />
+              <div className="absolute -left-3 top-10 w-1.5 h-24 bg-gold-400" />
 
-              {/* Stats card */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="absolute left-4 bottom-4 bg-black/90 backdrop-blur-sm border border-gold-500/30 p-6"
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="absolute left-4 bottom-4 bg-ivory border border-charcoal/10 px-6 py-5"
               >
                 <div className="flex gap-6">
-                  <div className="text-center">
-                    <div className="font-display text-3xl text-gold-400 font-semibold">10+</div>
-                    <div className="text-white/50 text-[11px] tracking-wider mt-1">Happy Clients</div>
+                  <div>
+                    <div className="font-display text-3xl text-charcoal font-light">10+</div>
+                    <div className="text-taupe text-[11px] tracking-wider mt-1 uppercase">Happy Clients</div>
                   </div>
-                  <div className="w-px bg-gold-500/30" />
-                  <div className="text-center">
-                    <div className="font-display text-3xl text-gold-400 font-semibold">50+</div>
-                    <div className="text-white/50 text-[11px] tracking-wider mt-1">Rooms Designed</div>
+                  <div className="w-px bg-charcoal/10" />
+                  <div>
+                    <div className="font-display text-3xl text-charcoal font-light">50+</div>
+                    <div className="text-taupe text-[11px] tracking-wider mt-1 uppercase">Rooms Designed</div>
                   </div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Right – Content */}
-          <div className="flex flex-col gap-8">
-            <SectionHeader
-              eyebrow="About Us"
-              title="One Team."
-              titleAccent="One Vision."
-              subtitle="We are two passionate interior design professionals who believe every space deserves a story. At FS Interior, your project isn't handled by a distant team — it's personally crafted by us, from the first sketch to the final handover."
-              align="left"
-            />
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+          {/* Right – Statement */}
+          <div className="flex flex-col gap-8 order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-white/55 leading-relaxed"
+              viewport={{ once: true, margin: "100px" }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col gap-6"
             >
-              With combined expertise in space planning, material science, and project execution, we bring your vision to life with uncompromising attention to detail — all while keeping the process transparent, affordable, and stress-free.
-            </motion.p>
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-px bg-gold-400" />
+                <span className="text-gold-600 text-xs tracking-[0.35em] uppercase font-body">About the Studio</span>
+              </div>
+              <h2 className="font-display text-4xl sm:text-5xl font-light leading-[1.12] text-charcoal text-balance">
+                We create spaces that feel effortless, personal and timeless.
+              </h2>
+              <p className="text-charcoal/60 leading-relaxed font-body">
+                We are two passionate interior design professionals who believe every space deserves a story. At FS Interior, your project isn&rsquo;t handed to a distant team — it&rsquo;s personally crafted by us, from the first sketch to the final handover, with an uncompromising eye for material, proportion and detail.
+              </p>
+            </motion.div>
 
             {/* Values */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 pt-2">
               {VALUES.map((val, i) => (
                 <motion.div
                   key={val.title}
-                  custom={i}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="show"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="flex gap-3 p-4 border border-white/5 hover:border-gold-500/30 transition-colors duration-300 group"
+                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  className="pt-4 border-t border-charcoal/10"
                 >
-                  <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 border border-gold-500/30 group-hover:bg-gold-500/10 transition-colors">
-                    <val.icon size={15} className="text-gold-500" />
-                  </div>
-                  <div>
-                    <div className="text-white text-sm font-semibold mb-1">{val.title}</div>
-                    <div className="text-white/40 text-xs leading-relaxed">{val.desc}</div>
-                  </div>
+                  <div className="text-gold-500 text-xs tracking-wider font-body mb-2">{val.num}</div>
+                  <div className="text-charcoal text-sm font-medium mb-1.5">{val.title}</div>
+                  <div className="text-charcoal/50 text-xs leading-relaxed">{val.desc}</div>
                 </motion.div>
               ))}
             </div>
@@ -134,11 +111,12 @@ export default function AboutSection() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              href="#consultation"
-              className="self-start px-8 py-4 bg-transparent border border-gold-500 text-gold-400 text-sm tracking-wider uppercase hover:bg-gold-500 hover:text-black transition-all duration-300 font-semibold"
+              transition={{ delay: 0.5 }}
+              href="/contact"
+              className="group self-start mt-2 flex items-center gap-2 text-charcoal text-sm tracking-wide font-body border-b border-charcoal/30 pb-1 hover:border-charcoal transition-colors duration-300"
             >
-              Book Your Free Site Visit
+              Discover our story
+              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </div>
         </div>

@@ -9,21 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Warm brass accent — used sparingly (eyebrows, hairlines, hover states)
         gold: {
-          50: "#fdf9f0",
-          100: "#faf0d7",
-          200: "#f5dfa0",
-          300: "#efc86a",
-          400: "#e8b43e",
-          500: "#d4a017",
-          600: "#b8880f",
-          700: "#8a6510",
-          800: "#6b4f14",
-          900: "#563f14",
+          50: "#f8f2e6",
+          100: "#eee0c4",
+          200: "#ddc394",
+          300: "#c8a56c",
+          400: "#af8a52",
+          500: "#8e6e3d",
+          600: "#725636",
+          700: "#5a4429",
+          800: "#453422",
+          900: "#332619",
         },
-        cream: "#faf8f4",
-        charcoal: "#1a1a1a",
-        "warm-black": "#0d0d0d",
+        ivory: "#faf6ef",
+        linen: "#f1ebe0",
+        stone: "#ded1bd",
+        taupe: "#8c7f6d",
+        charcoal: "#242019",
+        "warm-black": "#15120d",
+        cream: "#faf6ef",
       },
       fontFamily: {
         display: ["var(--font-cormorant)", "Georgia", "serif"],
@@ -31,27 +36,18 @@ const config: Config = {
         accent: ["var(--font-playfair)", "Georgia", "serif"],
       },
       animation: {
-        "fade-up": "fadeUp 0.6s ease-out forwards",
-        "fade-in": "fadeIn 0.8s ease-out forwards",
-        shimmer: "shimmer 2s infinite",
+        "fade-up": "fadeUp 0.8s ease-out forwards",
+        "fade-in": "fadeIn 1s ease-out forwards",
       },
       keyframes: {
         fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "0%": { opacity: "0", transform: "translateY(40px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-      },
-      backgroundImage: {
-        "gold-gradient": "linear-gradient(135deg, #d4a017 0%, #f5dfa0 50%, #d4a017 100%)",
-        "dark-gradient": "linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%)",
       },
     },
   },

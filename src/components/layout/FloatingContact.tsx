@@ -34,20 +34,20 @@ export default function FloatingContact() {
             {/* Call */}
             <a
               href={`tel:${PHONE}`}
-              className="flex items-center gap-3 bg-blue-600 text-white px-4 py-3 shadow-xl hover:bg-blue-500 transition-all duration-300 rounded-sm"
+              className="flex items-center gap-3 bg-charcoal text-ivory px-4 py-3 shadow-xl hover:bg-charcoal/85 transition-all duration-300"
             >
               <Phone size={20} />
-              <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Call Now</span>
+              <span className="text-sm font-medium tracking-wide whitespace-nowrap font-body">Call Now</span>
             </a>
 
             {/* Book Site Visit */}
             <a
-              href="#consultation"
+              href="/contact"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 bg-gold-500 text-black px-4 py-3 shadow-xl hover:bg-gold-400 transition-all duration-300 rounded-sm"
+              className="flex items-center gap-3 bg-gold-500 text-ivory px-4 py-3 shadow-xl hover:bg-gold-600 transition-all duration-300"
             >
               <Calendar size={20} />
-              <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Free Site Visit</span>
+              <span className="text-sm font-medium tracking-wide whitespace-nowrap font-body">Free Site Visit</span>
             </a>
           </motion.div>
         )}
@@ -55,10 +55,10 @@ export default function FloatingContact() {
 
       {/* Toggle Button */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(!open)}
-        className="w-14 h-14 bg-gold-500 text-black flex items-center justify-center shadow-[0_8px_32px_rgba(212,160,23,0.5)] hover:bg-gold-400 transition-all duration-300 rounded-sm"
+        className="w-14 h-14 bg-charcoal text-ivory flex items-center justify-center shadow-[0_8px_32px_rgba(21,18,13,0.35)] hover:bg-charcoal/85 transition-all duration-300"
         aria-label="Contact options"
       >
         <motion.div

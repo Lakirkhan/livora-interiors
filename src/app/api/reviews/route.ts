@@ -1,5 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+
+export const dynamic = "force-dynamic";
 
 const fallbackReviews = [
   {
@@ -58,7 +60,49 @@ const fallbackReviews = [
   },
 ];
 
+// Pulls live reviews straight from the business's Google Business Profile, so a new
+// Google review shows up here automatically without any manual data entry.
+// Requires GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID (see .env.local.example).
+// ponytail: Places API (New) caps this at Google's 5 "most relevant" reviews per
+// place and has no push/webhook — re-fetched at most hourly via Next's cache.
+async function fetchGoogleReviews() {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  if (!apiKey || !placeId) return null;
+
+  try {
+    const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+      headers: { "X-Goog-Api-Key": apiKey, "X-Goog-FieldMask": "reviews" },
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error(`Google Places API responded ${res.status}`);
+
+    const data = await res.json();
+    const reviews = (data.reviews || [])
+      .map((r: { authorAttribution?: { displayName?: string }; rating?: number; text?: { text?: string }; originalText?: { text?: string }; name?: string }, i: number) => ({
+        id: r.name || `google-${i}`,
+        client_name: r.authorAttribution?.displayName || "Google User",
+        project_type: "Google Review",
+        rating: r.rating ?? 5,
+        review_text: r.text?.text || r.originalText?.text || "",
+        location: null,
+        source: "google" as const,
+      }))
+      .filter((r: { review_text: string }) => r.review_text);
+
+    return reviews.length > 0 ? reviews : null;
+  } catch (error) {
+    console.error("Google reviews fetch error:", error);
+    return null;
+  }
+}
+
 export async function GET() {
+  const googleReviews = await fetchGoogleReviews();
+  if (googleReviews) {
+    return NextResponse.json({ reviews: googleReviews });
+  }
+
   try {
     const supabase = createServiceClient();
     const { data, error } = await supabase
@@ -68,10 +112,34 @@ export async function GET() {
       .limit(12);
 
     if (error) throw error;
+    if (!data || data.length === 0) throw new Error("No reviews in Supabase");
 
-    return NextResponse.json({ reviews: data || [] });
+    return NextResponse.json({ reviews: data });
   } catch (error) {
     console.error("Reviews fetch error:", error);
     return NextResponse.json({ reviews: fallbackReviews });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { client_name, project_type, rating, review_text, location } = body;
+
+    if (!client_name || !project_type || !review_text || !rating) {
+      return NextResponse.json({ success: false, message: "Please fill in all required fields." }, { status: 400 });
+    }
+
+    const supabase = createServiceClient();
+    const { error } = await supabase.from("reviews").insert([
+      { client_name, project_type, rating, review_text, location: location || null },
+    ]);
+
+    if (error) throw error;
+
+    return NextResponse.json({ success: true, message: "Thank you for your review!" });
+  } catch (error) {
+    console.error("Review submit error:", error);
+    return NextResponse.json({ success: false, message: "Something went wrong. Please try again." }, { status: 500 });
   }
 }

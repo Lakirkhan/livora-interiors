@@ -7,7 +7,8 @@ interface SectionHeaderProps {
   titleAccent?: string;
   subtitle?: string;
   align?: "left" | "center";
-  light?: boolean;
+  /** Set true only inside dark-background sections (hero overlay, philosophy, CTA, footer) */
+  dark?: boolean;
 }
 
 export default function SectionHeader({
@@ -15,42 +16,44 @@ export default function SectionHeader({
   title,
   titleAccent,
   subtitle,
-  align = "center",
-  light = false,
+  align = "left",
+  dark = false,
 }: SectionHeaderProps) {
   const textAlign = align === "center" ? "text-center items-center" : "text-left items-start";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className={`flex flex-col gap-4 ${textAlign}`}
+      viewport={{ once: true, margin: "100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`flex flex-col gap-5 ${textAlign}`}
     >
       {eyebrow && (
-        <span className="text-gold-500 text-xs tracking-[0.35em] uppercase font-body">
-          {eyebrow}
-        </span>
+        <div className={`flex items-center gap-3 ${align === "center" ? "" : "flex-row"}`}>
+          <span className="w-8 h-px bg-gold-400" />
+          <span className={`text-xs tracking-[0.35em] uppercase font-body ${dark ? "text-gold-300" : "text-gold-600"}`}>
+            {eyebrow}
+          </span>
+        </div>
       )}
       <h2
-        className={`font-display text-4xl sm:text-5xl lg:text-6xl font-light leading-tight ${
-          light ? "text-charcoal" : "text-white"
+        className={`font-display text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-[1.08] text-balance ${
+          dark ? "text-ivory" : "text-charcoal"
         }`}
       >
         {title}
         {titleAccent && (
           <>
             {" "}
-            <span className="gold-text italic">{titleAccent}</span>
+            <span className="italic text-gold-500">{titleAccent}</span>
           </>
         )}
       </h2>
-      <div className={`gold-divider ${align === "center" ? "self-center" : "self-start"}`} />
       {subtitle && (
         <p
-          className={`text-base sm:text-lg max-w-2xl leading-relaxed ${
-            light ? "text-charcoal/60" : "text-white/60"
+          className={`text-base sm:text-lg max-w-xl leading-relaxed font-body ${
+            dark ? "text-ivory/60" : "text-charcoal/60"
           }`}
         >
           {subtitle}

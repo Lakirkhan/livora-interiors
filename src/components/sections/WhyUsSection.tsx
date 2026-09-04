@@ -22,8 +22,7 @@ export default function WhyUsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 lg:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "100px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 flex flex-col gap-6"
           >
@@ -42,8 +41,7 @@ export default function WhyUsSection() {
 
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="lg:col-span-5 relative aspect-[4/5] overflow-hidden"
           >
@@ -63,8 +61,7 @@ export default function WhyUsSection() {
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "100px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
               className="border-r border-b border-ivory/10 p-7 sm:p-8 group"
             >
@@ -78,8 +75,7 @@ export default function WhyUsSection() {
         {/* CTA Strip */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
           className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 py-10 border-t border-ivory/10"
         >

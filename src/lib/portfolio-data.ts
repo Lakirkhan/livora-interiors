@@ -17,7 +17,7 @@ export const CATEGORIES: CategoryDef[] = [
   { name: "Kitchen", slug: "kitchen", cover: "1783865300464.jpg" },
   { name: "Office", slug: "office", cover: "1783865299363.jpg" },
   { name: "Dining Space", slug: "dining-space", cover: "1783865300389.jpg" },
-  { name: "Bathroom", slug: "bathroom", cover: "1783865300446.jpg" },
+  { name: "Bathroom", slug: "bathroom", cover: "1783865300270.png" },
 ];
 
 // Every image lives in a folder named after its room — keep in sync with public/images/*

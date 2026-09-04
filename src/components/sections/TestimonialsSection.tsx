@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote, BadgeCheck, Plus, X } from "lucide-react";
 import toast from "react-hot-toast";
 import type { Review } from "@/types";
+import Combobox from "../ui/Combobox";
+
+const PROJECT_TYPES = ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK / Villa", "Studio / 1 RK", "Office / Commercial"];
 
 const STATS = [
   { value: "10+", label: "Happy Clients" },
@@ -60,10 +63,11 @@ function AddReviewForm({ onDone }: { onDone: () => void }) {
         </div>
         <div>
           <label className={labelClass}>Project Type *</label>
-          <input
+          <Combobox
+            options={PROJECT_TYPES}
             value={projectType}
-            onChange={(e) => setProjectType(e.target.value)}
-            placeholder="e.g. 3 BHK Complete Interior"
+            onChange={setProjectType}
+            placeholder="Select project type"
             className={inputClass}
           />
         </div>
@@ -112,7 +116,10 @@ export default function TestimonialsSection() {
   const loadReviews = useCallback(() => {
     return fetch("/api/reviews")
       .then((r) => r.json())
-      .then((d) => setReviews(d.reviews || []))
+      .then((d) => {
+        setReviews((d.reviews || []).filter((r: Review) => r.rating > 3));
+        setCurrent(0);
+      })
       .catch(() => {});
   }, []);
 
@@ -138,8 +145,7 @@ export default function TestimonialsSection() {
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               className="text-center lg:text-left"
             >

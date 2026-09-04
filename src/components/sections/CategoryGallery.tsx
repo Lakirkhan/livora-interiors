@@ -25,8 +25,7 @@ export default function CategoryGallery({ items }: { items: PortfolioItem[] }) {
             <motion.div
               key={item.id}
               initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "100px" }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: (i % 6) * 0.05 }}
               className="relative overflow-hidden group cursor-pointer aspect-[4/3]"
               onClick={() => setLightboxImg({ image: item.image, title: item.title })}

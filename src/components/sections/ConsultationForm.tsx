@@ -96,8 +96,7 @@ export default function ConsultationForm() {
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-3xl text-center px-5"
         >
@@ -152,8 +151,7 @@ export default function ConsultationForm() {
         ) : (
           <motion.form
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             onSubmit={handleSubmit(onSubmit)}
             className="border-t border-charcoal/15 pt-12"
@@ -272,8 +270,7 @@ export default function ConsultationForm() {
         {/* Alternative contact */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="mt-12 pt-8 border-t border-charcoal/10 flex flex-wrap gap-x-6 gap-y-2"
         >

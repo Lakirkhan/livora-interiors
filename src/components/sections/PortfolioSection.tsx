@@ -13,8 +13,7 @@ export default function PortfolioSection() {
               key={cat.slug}
               href={`/projects/${cat.slug}`}
               initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "100px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="relative overflow-hidden group cursor-pointer aspect-[4/3]"
             >
@@ -42,8 +41,7 @@ export default function PortfolioSection() {
         {/* View More CTA */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1 }}
           className="mt-16 text-center"
         >
           <a

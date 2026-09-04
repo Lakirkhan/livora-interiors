@@ -37,8 +37,7 @@ export default function ProcessSection() {
             <motion.div
               key={step.num}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "100px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.12, duration: 0.6, ease: "easeOut" }}
               className="flex flex-col gap-3 py-8 lg:py-0 lg:px-8 first:lg:pl-0 last:lg:pr-0 border-t lg:border-t-0 lg:border-l border-charcoal/10 first:border-l-0"
             >
@@ -52,8 +51,7 @@ export default function ProcessSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="mt-16 pt-10 border-t border-charcoal/10 text-center"
         >

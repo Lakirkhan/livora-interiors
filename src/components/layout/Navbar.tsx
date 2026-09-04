@@ -50,10 +50,10 @@ export default function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Faizan Saiyed Home Interior"
-            width={2091}
-            height={752}
+            width={880}
+            height={818}
             priority
-            className="h-12 sm:h-16 w-[133px] sm:w-[178px] object-contain"
+            className="h-14 sm:h-20 w-auto object-contain"
           />
         </a>
 

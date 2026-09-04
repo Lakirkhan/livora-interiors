@@ -32,8 +32,7 @@ export default function PackagesSection() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1 }}
           className="text-charcoal/40 text-xs tracking-wide mb-14"
         >
           * All prices are starting figures. Final quote based on site visit &amp; material selection.
@@ -44,8 +43,7 @@ export default function PackagesSection() {
             <motion.div
               key={pkg.type}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.12, duration: 0.6 }}
               className={`relative flex flex-col p-8 sm:p-10 transition-colors duration-500 ${
                 pkg.popular ? "bg-charcoal text-ivory" : "bg-linen text-charcoal hover:bg-ivory"
@@ -97,8 +95,7 @@ export default function PackagesSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-3 text-center"
         >

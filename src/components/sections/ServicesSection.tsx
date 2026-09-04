@@ -59,8 +59,7 @@ export default function ServicesSection() {
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "100px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06, duration: 0.5 }}
                 onMouseEnter={() => setActive(i)}
                 className="group border-t border-charcoal/10 last:border-b py-6 sm:py-7 cursor-default transition-colors duration-300 lg:hover:pl-3"
@@ -119,8 +118,7 @@ export default function ServicesSection() {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-charcoal/10"
         >

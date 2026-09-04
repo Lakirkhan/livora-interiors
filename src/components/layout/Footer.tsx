@@ -5,14 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-warm-black border-t border-ivory/10">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-20">
-        {/* Closing statement */}
-        <div className="mb-20">
-          <span className="font-display italic text-5xl sm:text-6xl lg:text-7xl font-light text-ivory/90">
-            Designed for living.
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 pt-14 border-t border-ivory/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-6">

@@ -18,8 +18,7 @@ export default function AboutSection() {
           {/* Left – Images */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="relative order-2 lg:order-1"
           >
@@ -48,8 +47,7 @@ export default function AboutSection() {
 
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="absolute left-4 bottom-4 bg-ivory border border-charcoal/10 px-6 py-5"
               >
@@ -72,8 +70,7 @@ export default function AboutSection() {
           <div className="flex flex-col gap-8 order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "100px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="flex flex-col gap-6"
             >
@@ -85,7 +82,7 @@ export default function AboutSection() {
                 We create spaces that feel effortless, personal and timeless.
               </h2>
               <p className="text-charcoal/60 leading-relaxed font-body">
-                We are two passionate interior design professionals who believe every space deserves a story. At FS Interior, your project isn&rsquo;t handed to a distant team — it&rsquo;s personally crafted by us, from the first sketch to the final handover, with an uncompromising eye for material, proportion and detail.
+                We are passionate interior design professionals who believe every space deserves a story. At FS Interior, your project isn&rsquo;t handed to a distant team — it&rsquo;s personally crafted by us, from the first sketch to the final handover, with an uncompromising eye for material, proportion and detail.
               </p>
             </motion.div>
 
@@ -95,8 +92,7 @@ export default function AboutSection() {
                 <motion.div
                   key={val.title}
                   initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08, duration: 0.5 }}
                   className="pt-4 border-t border-charcoal/10"
                 >
@@ -109,8 +105,7 @@ export default function AboutSection() {
 
             <motion.a
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
               href="/contact"
               className="group self-start mt-2 flex items-center gap-2 text-charcoal text-sm tracking-wide font-body border-b border-charcoal/30 pb-1 hover:border-charcoal transition-colors duration-300"
